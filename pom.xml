@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Maven build file -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<!-- Generic project parameters ................................................. -->
+
+	<groupId>io.github.ajevans.dbcode.dbexamples</groupId>
+	<artifactId>dbexamples</artifactId>
+	<version>1.0</version>
+	<name>dbexamples</name>
+	<url>https://github.com/AJEvans</url> <!-- Project's website -->
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
+		<!-- Timestamp format for mvnversion javadoc tag, below -->
+		<!-- https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html -->
+		<maven.build.timestamp.format>dd' 'MMM' 'yyyy</maven.build.timestamp.format>
+		<!-- This variable so we can access project.datestamp in site.xml -->
+		<!-- (Doesn't seem possible to access maven.build.timestamp directly -->
+        <datestamp>${maven.build.timestamp}</datestamp>
+    </properties>
+
+
+
+
+
+    <!-- Libraries used in project .................................................. -->
+
+
+
+
+    <dependencies>
+    
+    
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
+    
+        <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.15.2.0</version>
+        </dependency>
+
+
+
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>15.0.1</version>
+        </dependency>
+        
+        <!-- Cross platform dependances from this excellent StackOverflow answer:--> 
+        <!-- https://stackoverflow.com/questions/52653836/maven-shade-javafx-runtime-components-are-missing/52654791#52654791 -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics </artifactId>
+            <version>11</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics </artifactId>
+            <version>11</version>
+            <classifier>linux</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics </artifactId>
+            <version>11</version>
+            <classifier>mac</classifier>
+        </dependency>
+
+
+
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+
+    </dependencies>
+
+
+
+    <!-- Plugins for building ....................................................... -->
+
+
+
+    <build>
+    
+
+        <plugins>
+    
+    
+            <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+            
+            
+            
+            
+            <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+            
+            
+            
+            
+            <!-- Adjusted for latest JDK -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>15</source>
+                    <target>15</target>
+                </configuration>
+            </plugin>
+            
+            
+            
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+
+            <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            
+            
+            
+            
+            <!-- Adjusted to build manifest with username -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Built-By>Andy Evans</Built-By>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            
+            
+            
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-install-plugin</artifactId>
+              <version>2.5.2</version>
+            </plugin>
+            
+            
+            
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>            
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+            
+            
+            
+            
+            <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+            <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.9.1</version>
+                <configuration>
+                    <locales>en</locales>
+                </configuration>
+            </plugin>
+            
+
+            
+            <!--AJE: removed dependency convergence plugin starter here-->
+
+
+
+            <!-- Build executable jar with dependencies-->
+            <!-- NB May want to add to release cycle: http://www.rationaljava.com/2015/02/maven-tip-all-about-executable-jars.html -->
+            <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${basedir}/src/site/resources/releases</outputDirectory>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <mainClass>io.github.ajevans.dbcode.dbexamples.DBExamples</mainClass>
+                            <addClasspath>true</addClasspath>  
+                        </manifest>
+                        <manifestEntries>
+                            <Built-By>Andy Evans</Built-By>
+                        </manifestEntries>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+            </executions>
+            </plugin>
+          
+          
+          
+          
+            <!-- Only needed to run javafx at command line through Maven, not from the jar -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.5</version>
+                <configuration>
+                    <mainClass>io.github.ajevans.dbcode.dbexamples.DBExamples</mainClass>
+                </configuration>
+            </plugin>
+
+
+
+
+            <!-- set inline debugging comments true or false -->
+            <!-- Not largely used as we run from jar; Maven just used for compiling -->
+            <!-- In for info incase using Maven exec -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>mvndebug</name>
+                                    <value>true</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+      
+        </plugins>
+
+
+    </build>
+
+
+
+    <!-- Plugins for reporting ...................................................... -->
+    <!-- Amongst other things, builds project documentation -->
+
+
+    <reporting>
+    
+    
+        <plugins>
+    
+    
+            <!-- Adds docs to project site -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <show>private</show>
+                    <version>false</version>
+                    <tags>
+                    
+                      <tag>
+                        <name>todo</name>
+                        <placement>a</placement>
+                        <head>To Do:</head>
+                      </tag>
+                      
+                      <!-- As this is a small application package, we inject the version and author -->
+                      <!-- Note that Maven won't take HTML tags here, but will take strings that it turns into tags! -->
+                      <tag>
+                        <name>mvnauthor</name>
+                        <placement>a</placement>
+                        <head>Author: &lt;a href="https://ajevans.github.io/"&gt;Andy Evans&lt;/a&gt;</head>
+                      </tag>
+                      <tag>
+                        <name>mvnversion</name>
+                        <placement>a</placement>
+                        <head>Version: ${project.version} ${maven.build.timestamp}</head>
+                      </tag>
+                    </tags>
+
+                </configuration>
+            </plugin>
+            
+            
+        </plugins>
+        
+        
+   </reporting>
+
+  
+  
+
+</project>

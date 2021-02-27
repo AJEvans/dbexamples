@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File to generate website -->
+
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd" 
+   name="Database examples">
+	
+
+    <skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.9</version>
+	</skin>
+   
+	<publishDate position="none"/>
+	<version position="none"/>
+
+
+	<poweredBy>
+		<logo width="0"/>
+	</poweredBy>
+
+	<bannerLeft>
+		<name>Database examples</name>
+	</bannerLeft>
+
+
+	<body>
+
+
+		<menu name="Overview">
+		  <item name="Introduction" href="index.html"/>
+          <item name="Project outline" href="notes.html"/>
+          <item name="Code &amp; UML" href="code.html"/>
+          <item name="Data &amp; metadata" href="data.html"/>
+		  <item name="JavaDocs" href="apidocs/index.html"/>
+		  <item name="Test JavaDocs" href="testapidocs/index.html"/>
+		  <!--item name="FAQ" href="faq.html"/-->
+		</menu>
+
+
+
+
+		<footer>
+			${project.version}
+			<![CDATA[<br>]]>
+			${project.datestamp}
+			<![CDATA[<br>Author: <a href="https://ajevans.github.io/">Andy Evans</a>]]>
+			<![CDATA[<br>Licence: <a href="https://opensource.org/licenses/MIT">MIT</a>]]>
+		</footer>
+
+
+	</body>
+   
+	<custom>
+		<fluidoSkin>
+			  <topBarEnabled>false</topBarEnabled>
+			  <sideBarEnabled>true</sideBarEnabled>
+		</fluidoSkin>
+	</custom>
+
+
+</project>
+
