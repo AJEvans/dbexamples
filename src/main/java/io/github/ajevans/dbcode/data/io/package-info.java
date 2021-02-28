@@ -1,5 +1,5 @@
 /**
-* Provides the interfaces and classes for a linker between strategy-pattern data 
+* Provides the interfaces and classes for links between abstract data 
 * suppliers and consumers.
 *
 * <div style="width:600px;">

@@ -1,6 +1,6 @@
 /**
 * Provides the classes necessary to write to various 
-* database types.
+* database / file system types.
 * 
 * <div style="width:600px;">
 * MIT License
