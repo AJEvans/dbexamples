@@ -11,7 +11,7 @@ written in the Java language for portability.
 To run the application, you'll need the latest Java install: [download site](https://www.java.com/en/). If your computer already has Java installed, please make sure it is the 
 latest version.
 
-Then download this [jar file](releases/dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar) somewhere convenient.
+Then download this [jar file](releases/dbexamples-1.0-jar-with-dependencies.jar) somewhere convenient.
 
 If Java has installed properly (and it doesn't always), you should then be able to double-click the jar file to run it. If this fails, open 
 a command prompt / terminal in the directory where you have saved the file*, and enter:
@@ -49,7 +49,7 @@ have the latest version. If you haven't got it installed, you'll need to downloa
 (or less restrictive [Open JDK](https://openjdk.java.net/)) first, install it, and then follow the 
 [Maven install instructions](https://maven.apache.org/install.html). 
 
-You can then download the [source code repository](http://github) somewhere convenient. 
+You can then download the [source code repository](https://github.com/AJEvans/dbexamples) somewhere convenient. 
 
 Find the download and extract it. Go into the directory produced, and you should find a file called 
 `pom.xml`. Open a command prompt within this directory, and type:

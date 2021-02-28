@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.github.ajevans.dbcode.data.io"},{"l":"io.github.ajevans.dbcode.data.structures"},{"l":"io.github.ajevans.dbcode.dbconsumers"},{"l":"io.github.ajevans.dbcode.dbexamples"},{"l":"io.github.ajevans.dbcode.filesuppliers"},{"l":"io.github.ajevans.dbcode.utilities"}];updateSearchResults();
