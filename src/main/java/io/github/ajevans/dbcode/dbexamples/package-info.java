@@ -1,6 +1,6 @@
 /**
 * Provides the classes necessary to create an application showing database 
-* access and manipulation.
+* access and manipulation; these are the main application starting classes.
 * 
 * <div style="width:600px;">
 * MIT License

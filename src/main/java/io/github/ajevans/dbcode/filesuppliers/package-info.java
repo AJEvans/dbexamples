@@ -1,5 +1,6 @@
 /**
-* Provides the classes for parsing different data file types.
+* Provides the classes for parsing different 
+* data file types.
 * 
 * <div style="width:600px;">
 * MIT License
@@ -28,4 +29,4 @@
 * @author <a href="https://ajevans.github.io/">Andy Evans</a>
 * @mvnversion
 */
-package io.github.ajevans.dbcode.dataparsers;
+package io.github.ajevans.dbcode.filesuppliers;

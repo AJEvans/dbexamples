@@ -1,5 +1,6 @@
 /**
-* Provides the classes necessary to write to various database types.
+* Provides the classes necessary to write to various 
+* database types.
 * 
 * <div style="width:600px;">
 * MIT License
@@ -28,4 +29,4 @@
 * @author <a href="https://ajevans.github.io/">Andy Evans</a>
 * @mvnversion
 */
-package io.github.ajevans.dbcode.dbconnectors;
+package io.github.ajevans.dbcode.dbconsumers;
