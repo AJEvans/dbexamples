@@ -2,13 +2,13 @@
 
 ### Structure
 
-The main class that starts all others is `io.github.ajevans.dbcode.dbexamples.DBExample`. This class starts the <span title="Graphical User Interface">GUI</span> `UIfx` class.
+The main class that starts all others is `io.github.ajevans.dbcode.dbexamples.DBExample`. This class starts the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> `UIfx` class.
 
 The core of the application is an framework of abstracted data suppliers and consumers. These are paired together by a data linker which bridges with each of the pair and negotiates data transfer between them. In line with the strategy-pattern, the abstracted supplier / consumer interfaces are developed into a variety of different implementations loaded by the GUI at runtime and responsible for different inputs and outputs.
 
-The <span title="Graphical User Interface">GUI</span> undergoes a discovery process to load available suppliers and consumers, keeping the <span title="Graphical User Interface">GUI</span> process-agnostic. 
-The <span title="Graphical User Interface">GUI</span> runs a data linker in a task thread, passing in the relevant supplier and consumer selected by the user. The data linker then negotiates the transfer of 
-data between the supplier and consumer, and passes back to the <span title="Graphical User Interface">GUI</span> thread any progress reports, messages, or exceptions, all of which are displayed to the user 
+The <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> undergoes a discovery process to load available suppliers and consumers, keeping the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> process-agnostic. 
+The <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> runs a data linker in a task thread, passing in the relevant supplier and consumer selected by the user. The data linker then negotiates the transfer of 
+data between the supplier and consumer, and passes back to the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> thread any progress reports, messages, or exceptions, all of which are displayed to the user 
 appropriately.
 
 &nbsp;
@@ -47,7 +47,7 @@ various elements indicating input, in-memory storage, and output respectively. F
 
 ### GUI
 
-As mentioned, the <span title="Graphical User Interface">GUI</span> loads suppliers and consumers it discovers, maintaining the abstraction seen at the supplier/consumer 
+As mentioned, the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> loads suppliers and consumers it discovers, maintaining the abstraction seen at the supplier/consumer 
 class level. Suppliers are loaded as file opening options, while the destination consumer can be changed as an option. 
 
 &nbsp;
@@ -59,8 +59,8 @@ class level. Suppliers are loaded as file opening options, while the destination
 The user can choose the directory to write to, but otherwise it defaults to their home directory. In each case, files are 
 written to a created subdirectory; defaults for these can be changed in associated properties files (below). 
 
-Exceptions are presented to the user using alert popups, while processing messages are written to the GUI as text. The latter can 
-be saved by the user as a text file for auditing. Progress is displayed with a progress bar at the bottom of the GUI.  
+Exceptions are presented to the user using alert popups, while processing messages are written to the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> as text. The latter can 
+be saved by the user as a text file for auditing. Progress is displayed with a progress bar at the bottom of the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span>.  
 
 &nbsp;
 
@@ -72,10 +72,10 @@ be saved by the user as a text file for auditing. Progress is displayed with a p
 
 The software is localised via a series of properties files found in the distribution `/META-INF/` directory. These are:
 
-- `application.properties` : default directories for the application, test data, the ISO 639-1:2002 Alpha-2 language prefix for localisation (for English, this reads `locale=en`).
+- `application.properties` : default directories for the application, test data, the <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> 639-1:2002 Alpha-2 language prefix for localisation (for English, this reads `locale=en`).
 - `en.properties` : this is discovered using the localisation prefix (here `en`). It contains all text interactions with the users in the appropriate language. 
-- `en-datasuppliers.properties` : this contains the full class name of each supplier and the localised GUI text to display for it.
-- `en-dataconsumers.properties` : this contains the full class name of each consumer and the localised GUI text to display for it.
+- `en-datasuppliers.properties` : this contains the full class name of each supplier and the localised <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> text to display for it.
+- `en-dataconsumers.properties` : this contains the full class name of each consumer and the localised <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> text to display for it.
 
 Also in this directory is the `gui.css` for styling the GUI. 
 
@@ -107,14 +107,14 @@ messages to be passed to the data linker.
 
 &nbsp;
 
-The data linker then reports to the <span title="Graphical User Interface">GUI</span> via a set of methods that mirror those of `IReportingListener`. It inherits these methods from 
+The data linker then reports to the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> via a set of methods that mirror those of `IReportingListener`. It inherits these methods from 
 its parent `Task` class. Data suppliers and consumers can't call these inherited methods directly in the data linker as they 
-reside in action on the <span title="Graphical User Interface">GUI</span> Thread. `Task` inheritors have a somewhat split nature: <span title="Graphical User Interface">GUI</span>-communicating `Task` methods residing on the 
-<span title="Graphical User Interface">GUI</span> thread to update it, while other methods run on background threads to do processing. `DataLinker` therefore 
+reside in action on the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> Thread. `Task` inheritors have a somewhat split nature: <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span>-communicating `Task` methods residing on the 
+<span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> thread to update it, while other methods run on background threads to do processing. `DataLinker` therefore 
 negotiates between the two parallel set of `Task` and `IReportingListener` messaging methods to pass messages from suppliers and consumers to the GUI. 
 
-Exceptions are <span title="Graphical User Interface">GUI</span>-friendly and thrown to calling code so they can be ultimately dealt with by the 
-data linker (which passes them to the <span title="Graphical User Interface">GUI</span> where they display as user-friendly alerts). 
+Exceptions are <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span>-friendly and thrown to calling code so they can be ultimately dealt with by the 
+data linker (which passes them to the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> where they display as user-friendly alerts). 
 
 &nbsp;
 
@@ -160,7 +160,7 @@ Outputs can be saved as a text file for emailing to support on most operating sy
 
 ### Code style
 
-Not knowing the environment the code is entering, Java was chosen as platform-agnostic and easy to distribute, while allowing reasonable GUI development. 
+Not knowing the environment the code is entering, Java was chosen as platform-agnostic and easy to distribute, while allowing reasonable <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> development. 
 For a less formal project achieving the data transformation and display with less development time, I'd probably have picked Python running in Jupyter, but Java brings a 
 formalism and long-hand clarity which seems appropriate.  
  
@@ -175,7 +175,7 @@ somewhat verbose code. The overall package structure is:
 
 &nbsp;
 
-A qualification of the software using an <span title="International Organization for Standardization">ISO</span> standard process might be appropriate for a production-level version of the software, but for the moment qualification is limited to the unit tests supplied. These cover edge case tests for core utility methods; functional tests for all significant units of work; and uncleaned data edge case tests. For details of how to build the software, which will run the tests, see the [introduction page](index.html). I've avoided using online <span title="Continuous Integration">CI</span> to keep things as simple as possible &nbsp; with Maven installed, everything should run from the downloaded repo.
+A qualification of the software using an <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> standard process might be appropriate for a production-level version of the software, but for the moment qualification is limited to the unit tests supplied. These cover edge case tests for core utility methods; functional tests for all significant units of work; and uncleaned data edge case tests. For details of how to build the software, which will run the tests, see the [introduction page](index.html). I've avoided using online <span style="text-decoration: underline dotted gray;" title="Continuous Integration">CI</span> to keep things as simple as possible &nbsp; with Maven installed, everything should run from the downloaded repo.
 
 ### Potential refactoring
 

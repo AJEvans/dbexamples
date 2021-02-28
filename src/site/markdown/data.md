@@ -9,7 +9,7 @@ The data comes ontology-free (although a brief description is available online -
 This makes for validation (for example, that data is within range), that is very broad. There is, for example, no indication of whether any numerical data 
 can be floating point, even where it is currently integer data, or whether decimal places will be used when present (for example, in coordinate systems). All numerical data 
 is therefore treated as decimal, though generally of fixed scale (so, for example, integers are treated as zero-decimal-place decimals until the need arises to treat them otherwise). 
-Numerical data is held as Java BigDecimals, the numerical precision of which is to ANSI X3.274-1996 / X3.274-1996/AM 1-2000 standards. Dates are maintained internally in a <span title="Coordinated Universal Time">UTC</span> calendaring system.  
+Numerical data is held as Java BigDecimals, the numerical precision of which is to ANSI X3.274-1996 / X3.274-1996/AM 1-2000 standards. Dates are maintained internally in a <span style="text-decoration: underline dotted gray;" title="Coordinated Universal Time">UTC</span> calendaring system.  
 
 The system carries out the following validations, flagged to the user where 
 the data fails:
@@ -42,11 +42,11 @@ storage and processing, a Hadoop output is also provided. Again, Hadoop runs bun
 powerful when used across a set of networked machines. For more information, see the [Hadoop website](https://hadoop.apache.org/).
 
 The specification shows the date data held in the database in US-format date strings (i.e. first two digits are month). This is 
-the format which the first and last records in tables are listed in within the <span title="Graphical User Interface">GUI</span> 
+the format which the first and last records in tables are listed in within the <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> 
 after tables are created (these are drawn from the table to prove the data is there). However, as there's no day information in the files I'd want to clarify this 
 requirement with the client with regards the values actually held in storage; I've gone with holding the dates as unformatted date 
 information as this helps with validation, though it would be easy enough to shift this to US-format date strings 
-or display them appropriately in any given output. The flat file consumer outputs the dates as <span title="International Organization for Standardization">ISO</span> 2014 / <span title="International Organization for Standardization">ISO</span> 8601-2:2019 standard (YYYY-MM-DD) as these files are not intended to match the 
+or display them appropriately in any given output. The flat file consumer outputs the dates as <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> 2014 / <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> 8601-2:2019 standard (YYYY-MM-DD) as these files are not intended to match the 
 database section of the specification, albeit they may be the simplest way to check the data is held. The Hadoop files hold dates as US format strings. 
 In the absence of day information it is assumed all monthly dates attributed to values in the files are associated with the first day of the month. 
 
@@ -62,11 +62,11 @@ There is minimal metadata associated with the data, in the form of a file header
 
 Nevertheless, metadata tables and files are generated for each dataset (set of database tables/files) and record holder (specific tables and files); see above for the naming 
 conventions for these. In the absence of much formal and embedded information on the files' derivation or ontological status, or an Application Profile, the metadata schema used 
-is the high-level Dublin Core schema (<span title="International Organization for Standardization">ISO</span> 15836:2009), which was developed for cross-domain resource description. This has been extended with additions to cover 
+is the high-level Dublin Core schema (<span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> 15836:2009), which was developed for cross-domain resource description. This has been extended with additions to cover 
 additional information in the dataset. A production-level example might implement a fuller climate-data metadata schema, save that the data is aggregated and derived, which removes 
-much of the information that would be covered (such as station data). A schema centred on <span title="International Organization for Standardization">ISO</span> 19115-1:2014 "Geographical Information" could be utilised, 
-along with <span title="International Organization for Standardization">ISO</span> 19115-2:2009, the extension for gridded data &ndash; although much of the latter centres on imagery. Overall, however, alternatives to Dublin Core (and indeed, 
-alternative output formats such as <span title="Open Geospatial Consortium">OGC</span> NetCDF) are strongly dependent on use-cases. 
+much of the information that would be covered (such as station data). A schema centred on <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> 19115-1:2014 "Geographical Information" could be utilised, 
+along with <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> 19115-2:2009, the extension for gridded data &ndash; although much of the latter centres on imagery. Overall, however, alternatives to Dublin Core (and indeed, 
+alternative output formats such as <span style="text-decoration: underline dotted gray;" title="Open Geospatial Consortium">OGC</span> NetCDF) are strongly dependent on use-cases. 
 
 <strong>Note that, in line with the specification, no attempt has been made to scale the data; however, comments on scaling and a link to further information about 
 the file data are given in the `notes` metadata section for each file/table and displayed to the user.</strong>
