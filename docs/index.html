@@ -56,19 +56,19 @@
         <main id="bodyColumn"  class="span10" >
 <section>
 <h2><a name="Introduction"></a>Introduction</h2>
-<p>Project builds a jar-based app that reads in Climate Research Unit Time Series 2.1 files gridded files, parses and transforms them, and writes them to a variety of outputs (flat-file; SQL database; NoSQL filesystem). A test file is <a class="externalLink" href="https://jbasoftware.com/files/jba-software-code-challenge-data-transformation.zip">available online</a>. A set of <a href="notes.html">notes</a> is available for the software internals, data outputs, and design reasoning. The application is written in the Java language for portability.</p>
+<p>Project builds a jar-based app that reads in Climate Research Unit Time Series 2.1 files gridded files, parses and transforms them, and writes them to a variety of outputs (flat-file; <span title="Structured Query Language">SQL</span> database; distributed filesystem). A test file is <a class="externalLink" href="https://jbasoftware.com/files/jba-software-code-challenge-data-transformation.zip">available online</a>. A set of <a href="notes.html">notes</a> is available for the software internals, data outputs, and design reasoning. The application is written in the Java language for portability.</p>
 <p>&#xa0;</p>
 <p><img src="images/gui-filemenu.jpeg" alt="GUI showing file menu" /> <img src="images/gui-options.jpeg" alt="GUI showing options" /></p>
 <p>&#xa0;</p>
 <p>To run the application, you&#x2019;ll need the latest Java install: <a class="externalLink" href="https://www.java.com/en/">download site</a>. If your computer already has Java installed, please make sure it is the latest version.</p>
 <p>Then download this <a href="releases/dbexamples-1.0-jar-with-dependencies.jar">jar file</a> somewhere convenient.</p>
 <p>If Java has installed properly (and it doesn&#x2019;t always), you should then be able to double-click the jar file to run it. If this fails, open a command prompt / terminal in the directory where you have saved the file*, and enter:</p>
-<p><code>java -jar dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar</code></p>
+<p><code>java -jar dbexamples-1.0-jar-with-dependencies.jar</code></p>
 <p>(*You can do this in Windows by navigating to the directory in Windows Explorer and typing <code>cmd</code> in the address bar. For Macs, open Terminal, type <code>cd</code> (with a space after it) and then drag the folder from Finder into Terminal. Press enter.)</p>
 <p>The application should be fairly self-explanatory. You can set the output type and location under the <code>Options</code> menu. The outputs will appear in your home directory unless you choose otherwise under <code>Options</code>. The directories and files it produces should be relatively self explanatory (any databases files will obviously be complicated in detail but the directories should be obvious), but if you&#x2019;d like more information on these, see <a href="data.html">notes on data and metadata</a>. Database entries can be confirmed in the user interface: the first and last records of any given table are listed.</p>
 <p>&#xa0;</p>
 <p>Although the code should adapt to large, memory hungry, files, this will be much slower. You can improve the memory for a standard run by (instead of the above) typing:</p>
-<p><code>java -jar -Xmx4g dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar</code></p>
+<p><code>java -jar -Xmx4g dbexamples-1.0-jar-with-dependencies.jar</code></p>
 <p>where the &#x201c;4g&#x201d; is the amount of memory you&#x2019;d like to allocate to the process in gigabytes.</p>
 <p>&#xa0;</p><section>
 <h3><a name="Building_and_testing_the_source_code"></a>Building and testing the source code</h3>

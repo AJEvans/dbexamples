@@ -57,9 +57,9 @@
 <section>
 <h2><a name="Notes_on_Code_and_UML"></a>Notes on Code and UML</h2><section>
 <h3><a name="Structure"></a>Structure</h3>
-<p>The main class that starts all others is <code>io.github.ajevans.dbcode.dbexamples.DBExample</code>. This class starts the GUI <code>UIfx</code> class.</p>
+<p>The main class that starts all others is <code>io.github.ajevans.dbcode.dbexamples.DBExample</code>. This class starts the <span title="Graphical User Interface">GUI</span> <code>UIfx</code> class.</p>
 <p>The core of the application is an framework of abstracted data suppliers and consumers. These are paired together by a data linker which bridges with each of the pair and negotiates data transfer between them. In line with the strategy-pattern, the abstracted supplier / consumer interfaces are developed into a variety of different implementations loaded by the GUI at runtime and responsible for different inputs and outputs.</p>
-<p>The GUI undergoes a discovery process to load available suppliers and consumers, keeping the GUI process-agnostic. The GUI runs a data linker in a task thread, passing in the relevant supplier and consumer selected by the user. The data linker then negotiates the transfer of data between the supplier and consumer, and passes back to the GUI thread any progress reports, messages, or exceptions, all of which are displayed to the user appropriately.</p>
+<p>The <span title="Graphical User Interface">GUI</span> undergoes a discovery process to load available suppliers and consumers, keeping the <span title="Graphical User Interface">GUI</span> process-agnostic. The <span title="Graphical User Interface">GUI</span> runs a data linker in a task thread, passing in the relevant supplier and consumer selected by the user. The data linker then negotiates the transfer of data between the supplier and consumer, and passes back to the <span title="Graphical User Interface">GUI</span> thread any progress reports, messages, or exceptions, all of which are displayed to the user appropriately.</p>
 <p>&#xa0;</p>
 <p><img src="images/major-classes.jpeg" alt="Major classes" /></p>
 <p>&#xa0;</p>
@@ -71,15 +71,15 @@
 <p>&#xa0;</p>
 <p><img src="images/data-classes.jpeg" alt="Data model" /></p>
 <p>&#xa0;</p>
-<p>In this case, we implement a tabulated dataset suitable for database writing. The code and documentation utilises the terms <code>source</code>, <code>holder</code> and <code>store</code> for various elements indicating input, in-memory storage, and output respectively. For example, we might have &#x201c;record holders&#x201d; or &#x201c;database sources&#x201d;.</p>
+<p>In this case, we implement a tabulated dataset suitable for database writing. The code and documentation utilise the terms <code>source</code>, <code>holder</code> and <code>store</code> for various elements indicating input, in-memory storage, and output respectively. For example, we might have &#x201c;record holders&#x201d; or &#x201c;database sources&#x201d;.</p>
 <p>&#xa0;</p></section><section>
 <h3><a name="GUI"></a>GUI</h3>
-<p>As mentioned, the GUI loads suppliers and consumers it discovers, maintaining the abstraction seen at the supplier/consumer class level. Suppliers are loaded as file opening options, while the destination consumer can be changed as an option.</p>
+<p>As mentioned, the <span title="Graphical User Interface">GUI</span> loads suppliers and consumers it discovers, maintaining the abstraction seen at the supplier/consumer class level. Suppliers are loaded as file opening options, while the destination consumer can be changed as an option.</p>
 <p>&#xa0;</p>
 <p><img src="images/gui-filemenu.jpeg" alt="GUI showing file menu" /> <img src="images/gui-options.jpeg" alt="GUI showing options" /></p>
 <p>&#xa0;</p>
 <p>The user can choose the directory to write to, but otherwise it defaults to their home directory. In each case, files are written to a created subdirectory; defaults for these can be changed in associated properties files (below).</p>
-<p>Exceptions are presented to the user using alert popups, while processing messages are written to the GUI as text. These can be saved by the user as a text file for auditing. Progress is displayed with a progress bar at the bottom of the GUI.</p>
+<p>Exceptions are presented to the user using alert popups, while processing messages are written to the GUI as text. The latter can be saved by the user as a text file for auditing. Progress is displayed with a progress bar at the bottom of the GUI.</p>
 <p>&#xa0;</p></section><section>
 <h3><a name="Ancillary_code"></a>Ancillary code</h3>
 <p>&#xa0;</p><section>
@@ -87,7 +87,7 @@
 <p>The software is localised via a series of properties files found in the distribution <code>/META-INF/</code> directory. These are:</p>
 <ul>
 
-<li><code>application.properties</code> : default directories for the application, test data, the ISO 639-1:2002 Alpha-2 language prefix for localisation (for English, this reads <code>locale=en</code>)</li>
+<li><code>application.properties</code> : default directories for the application, test data, the ISO 639-1:2002 Alpha-2 language prefix for localisation (for English, this reads <code>locale=en</code>).</li>
 <li><code>en.properties</code> : this is discovered using the localisation prefix (here <code>en</code>). It contains all text interactions with the users in the appropriate language.</li>
 <li><code>en-datasuppliers.properties</code> : this contains the full class name of each supplier and the localised GUI text to display for it.</li>
 <li><code>en-dataconsumers.properties</code> : this contains the full class name of each consumer and the localised GUI text to display for it.</li>
@@ -103,23 +103,23 @@
 <p>&#xa0;</p>
 <p><img src="images/reporting-classes.jpeg" alt="Reporting class structure" /></p>
 <p>&#xa0;</p>
-<p>The data linker then reports to the GUI via a set of methods that mirror <code>IReportingListener</code> which it inherits from its parent <code>Task</code> class. Data suppliers and consumers can&#x2019;t call these inherited methods directly in the data linker as they reside in action on the GUI Thread. <code>Task</code> inheritors have a somewhat split nature: GUI-communicating <code>Task</code> methods residing on the GUI thread to update it, while other methods run on background threads to do processing. <code>DataLinker</code> therefore negotiates between the two parallel set of <code>Task</code> and <code>IReportingListener</code> messaging methods to pass messages from suppliers and consumers to the GUI.</p>
-<p>Exceptions are GUI-friendly and thrown to calling code so they can be ultimately dealt with by the data linker (which passes them to the GUI where they display as user-friendly alerts).</p>
+<p>The data linker then reports to the <span title="Graphical User Interface">GUI</span> via a set of methods that mirror those of <code>IReportingListener</code>. It inherits these methods from its parent <code>Task</code> class. Data suppliers and consumers can&#x2019;t call these inherited methods directly in the data linker as they reside in action on the <span title="Graphical User Interface">GUI</span> Thread. <code>Task</code> inheritors have a somewhat split nature: <span title="Graphical User Interface">GUI</span>-communicating <code>Task</code> methods residing on the <span title="Graphical User Interface">GUI</span> thread to update it, while other methods run on background threads to do processing. <code>DataLinker</code> therefore negotiates between the two parallel set of <code>Task</code> and <code>IReportingListener</code> messaging methods to pass messages from suppliers and consumers to the GUI.</p>
+<p>Exceptions are <span title="Graphical User Interface">GUI</span>-friendly and thrown to calling code so they can be ultimately dealt with by the data linker (which passes them to the <span title="Graphical User Interface">GUI</span> where they display as user-friendly alerts).</p>
 <p>&#xa0;</p></section><section>
 <h4><a name="Push_mode"></a>Push mode</h4>
-<p>The system has two modes of data transfer. In the &#x201c;pull&#x201d; mode, the consumer pulls the whole dataset in one go from the supplier. This is quick, but can be memory intensive, especially for Derby. In the &#x201c;push&#x201d; mode, consumers register with the supplier for piecemeal updates as the file is read. This reduces the memory overhead, but is much slower, as consumers can&#x2019;t use bulk loading techniques. By default, the system looks at the file sizes being loaded and estimates maximum memory use for comparison with available memory. If it looks like memory will be a problem, it moves to push mode.</p>
+<p>The system has two modes of data transfer. In the &#x201c;pull&#x201d; mode, the consumer pulls the whole dataset in one go from the supplier. This is quick, but can be memory intensive, especially for Derby. In the &#x201c;push&#x201d; mode, consumers register with the supplier for piecemeal updates as the file is read. This reduces the memory overhead, but is much slower as consumers can&#x2019;t use bulk loading techniques. By default, the system looks at the file sizes being loaded and estimates maximum memory use for comparison with available memory. If it looks like memory will be a problem, it moves to push mode.</p>
 <p>If the application is too slow in push mode, you can force extra memory use by running it from a command line, thus:</p>
-<p><code>java -jar -Xmx4g dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar</code></p>
+<p><code>java -jar -Xmx4g dbexamples-1.0-jar-with-dependencies.jar</code></p>
 <p>where the &#x201c;4g&#x201d; is the amount of memory you&#x2019;d like to allocate to the process in gigabytes.</p>
 <p>However, the system can also be forced into different modes, thus:</p>
-<p><code>java -jar -Dmode=0 dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar</code></p>
+<p><code>java -jar -Dmode=0 dbexamples-1.0-jar-with-dependencies.jar</code></p>
 <p>with the mode set to <code>0</code> for the slow, memory light, push mode; <code>1</code> for the fast, memory heavy, pull mode, and <code>2</code> for the default memory checking mode. In way of comparison, the sample file available (see <a href="index.html">introduction</a>), which contains ~8M records, took around 30 mins to load but only ~100MB of memory under push conditions, but around 1 min to load and ~1500MB of memory under &#x201c;pull&#x201d; conditions.</p>
 <p>&#xa0;</p></section><section>
 <h4><a name="Debugging"></a>Debugging</h4>
 <p>All exceptions are directed to the user with appropriate messages where not otherwise handled invisibly. However, in the unlikely event the suggestions don&#x2019;t deal with an issue (for example, it is possible a user has permission issues outside of the software and can&#x2019;t recognise them) the system can be put into &#x201c;debug&#x201d; mode, which will give more complex exception information a user can relay to support. Debug mode can be initialised by running the application from the command line using:</p>
-<p><code>java -jar -Ddebug=true dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar</code></p>
+<p><code>java -jar -Ddebug=true dbexamples-1.0-jar-with-dependencies.jar</code></p>
 <p>Outputs can be saved as a text file for emailing to support on most operating systems using:</p>
-<p><code>java -jar -Ddebug=true dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar 1&gt; output.txt 2&gt;&amp;1</code></p>
+<p><code>java -jar -Ddebug=true dbexamples-1.0-jar-with-dependencies.jar 1&gt; output.txt 2&gt;&amp;1</code></p>
 <p>&#xa0;</p></section></section><section>
 <h3><a name="Code_style"></a>Code style</h3>
 <p>Not knowing the environment the code is entering, Java was chosen as platform-agnostic and easy to distribute, while allowing reasonable GUI development. For a less formal project achieving the data transformation and display with less development time, I&#x2019;d probably have picked Python running in Jupyter, but Java brings a formalism and long-hand clarity which seems appropriate.</p>
@@ -127,12 +127,12 @@
 <p>&#xa0;</p>
 <p><img src="images/packages.jpeg" alt="Package structure" /></p>
 <p>&#xa0;</p>
-<p>A qualification of the software using an ISO standard process might be appropriate for a production-level version of the software, but for the moment qualification is limited to the unit tests supplied. These cover edge case tests for core utility methods; functional tests for all significant units of work; and uncleaned data edge case tests. For details of how to build the software, which will run the tests, see the <a href="index.html">introduction page</a>. Generally, I tend to use Travis for testing, but it seemed helpful to keep things as simple as possible.</p></section><section>
+<p>A qualification of the software using an <span title="International Organization for Standardization">ISO</span> standard process might be appropriate for a production-level version of the software, but for the moment qualification is limited to the unit tests supplied. These cover edge case tests for core utility methods; functional tests for all significant units of work; and uncleaned data edge case tests. For details of how to build the software, which will run the tests, see the <a href="index.html">introduction page</a>. I&#x2019;ve avoided using online <span title="Continuous Integration">CI</span> to keep things as simple as possible &#xa0; with Maven installed, everything should run from the downloaded repo.</p></section><section>
 <h3><a name="Potential_refactoring"></a>Potential refactoring</h3>
 <p>A few design decisions made early on might be refactored out, depending on the direction the software when in:</p>
 <ul>
 
-<li>The decision to allow piped processing and therefore the separation of supplier/consumer initialisation from data writing could be removed to simplify setup.</li>
+<li>The decision to allow piped processing and therefore the separation of supplier/consumer initialisation from data writing could be removed to simplify setup, as could unused code to allow the user to specify database table names.</li>
 <li>The decision to have two processing routes, one for very large files where running out of memory might be a risk and another, quicker, pathway for small files makes data loading methods more complicated.</li>
 <li>The fact that so many of the utility methods for the consumers are nearly identical may suggest the need for a Consumer superclass.</li>
 <li>Internal record count estimations are actually entirely accurate now, and used as such, so the various method descriptions treating them as estimations should probably be updated.</li>

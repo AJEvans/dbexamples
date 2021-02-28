@@ -1,7 +1,7 @@
 ## Introduction
 
 Project builds a jar-based app that reads in Climate Research Unit Time Series 2.1 files gridded files, parses and transforms them, and writes them to a 
-variety of outputs (flat-file; SQL database; NoSQL filesystem). A test file is [available online](https://jbasoftware.com/files/jba-software-code-challenge-data-transformation.zip). 
+variety of outputs (flat-file; <span title="Structured Query Language">SQL</span> database; distributed filesystem). A test file is [available online](https://jbasoftware.com/files/jba-software-code-challenge-data-transformation.zip). 
 A set of [notes](notes.html) is available for 
 the software internals, data outputs, and design reasoning. The application is 
 written in the Java language for portability. 
@@ -20,7 +20,7 @@ Then download this [jar file](releases/dbexamples-1.0-jar-with-dependencies.jar)
 If Java has installed properly (and it doesn't always), you should then be able to double-click the jar file to run it. If this fails, open 
 a command prompt / terminal in the directory where you have saved the file*, and enter:
 
-`java -jar dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar`
+`java -jar dbexamples-1.0-jar-with-dependencies.jar`
 
 (*You can do this in Windows by navigating to the directory in Windows Explorer and typing `cmd` in the address bar. 
 For Macs, open Terminal, type `cd ` (with a space after it) and then drag the folder from Finder into Terminal. Press enter.)
@@ -40,7 +40,7 @@ user interface: the first and last records of any given table are listed.
 Although the code should adapt to large, memory hungry, files, this will be much slower. You can improve the memory for a standard run 
 by (instead of the above) typing:
 
-`java -jar -Xmx4g dbexamples-1.0-SNAPSHOT-jar-with-dependencies.jar`
+`java -jar -Xmx4g dbexamples-1.0-jar-with-dependencies.jar`
 
 where the "4g" is the amount of memory you'd like to allocate to the process in gigabytes.
 
