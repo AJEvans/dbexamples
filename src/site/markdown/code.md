@@ -175,7 +175,7 @@ somewhat verbose code. The overall package structure is:
 
 &nbsp;
 
-A qualification of the software using an <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> standard process might be appropriate for a production-level version of the software, but for the moment qualification is limited to the unit tests supplied. These cover edge case tests for core utility methods; functional tests for all significant units of work; and uncleaned data edge case tests. For details of how to build the software, which will run the tests, see the [introduction page](index.html). I've avoided using online <span style="text-decoration: underline dotted gray;" title="Continuous Integration">CI</span> to keep things as simple as possible &nbsp; with Maven installed, everything should run from the downloaded repo.
+A qualification of the software using an <span style="text-decoration: underline dotted gray;" title="International Organization for Standardization">ISO</span> standard process might be appropriate for a production-level version of the software, but for the moment qualification is limited to the unit tests supplied. These cover edge case tests for core utility methods; functional tests for all significant units of work; and uncleaned data edge case tests. For details of how to build the software, which will run the tests, see the [introduction page](index.html). I've avoided using online <span style="text-decoration: underline dotted gray;" title="Continuous Integration">CI</span> to keep things as simple as possible &ndash; with Maven installed, everything should run from the downloaded repo.
 
 ### Potential refactoring
 

@@ -9,10 +9,9 @@ The data comes ontology-free (although a brief description is available online -
 This makes for validation (for example, that data is within range), that is very broad. There is, for example, no indication of whether any numerical data 
 can be floating point, even where it is currently integer data, or whether decimal places will be used when present (for example, in coordinate systems). All numerical data 
 is therefore treated as decimal, though generally of fixed scale (so, for example, integers are treated as zero-decimal-place decimals until the need arises to treat them otherwise). 
-Numerical data is held as Java BigDecimals, the numerical precision of which is to ANSI X3.274-1996 / X3.274-1996/AM 1-2000 standards. Dates are maintained internally in a <span style="text-decoration: underline dotted gray;" title="Coordinated Universal Time">UTC</span> calendaring system.  
+Numerical data is held as Java BigDecimals, the numerical precision of which is to <span style="text-decoration: underline dotted gray;" title="American National Standards Institute">ANSI</span> X3.274-1996 / X3.274-1996/AM 1-2000 standards. Dates are maintained internally in a <span style="text-decoration: underline dotted gray;" title="Coordinated Universal Time">UTC</span> calendaring system.  
 
-The system carries out the following validations, flagged to the user where 
-the data fails:
+The system carries out the following validations, flagged to the user where the data fails:
 
 - Expected numerical data is checked to be numerical.
 - Numerical data is treated as five significant figures or less (data columns being five digits wide).
