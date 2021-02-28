@@ -103,7 +103,7 @@ messages to be passed to the data linker.
 
 &nbsp;
 
-![GUI showing file menu](images/reporting-classes.jpeg)
+![Reporting class structure](images/reporting-classes.jpeg)
 
 &nbsp;
 
@@ -161,7 +161,7 @@ Outputs can be saved as a text file for emailing to support on most operating sy
 ### Code style
 
 Not knowing the environment the code is entering, Java was chosen as platform-agnostic and easy to distribute, while allowing reasonable GUI development. 
-For a less formal project achieving the same ends with less development time, I'd probably have picked Python running in Jupyter, but Java brings a 
+For a less formal project achieving the data transformation and display with less development time, I'd probably have picked Python running in Jupyter, but Java brings a 
 formalism and long-hand clarity which seems appropriate.  
  
 In terms of style, I've valued clarity over efficiency where efficiency is ok; for example, declaring variables to hold intermediate steps in 

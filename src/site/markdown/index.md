@@ -8,6 +8,10 @@ written in the Java language for portability.
 
 &nbsp;
 
+![GUI showing file menu](images/gui-filemenu.jpeg) ![GUI showing options](images/gui-options.jpeg) 
+
+&nbsp;
+
 To run the application, you'll need the latest Java install: [download site](https://www.java.com/en/). If your computer already has Java installed, please make sure it is the 
 latest version.
 
