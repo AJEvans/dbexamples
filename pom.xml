@@ -18,8 +18,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>15</maven.compiler.source>
-		<maven.compiler.target>15</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- Timestamp format for mvnversion javadoc tag, below -->
 		<!-- https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html -->
 		<maven.build.timestamp.format>dd' 'MMM' 'yyyy</maven.build.timestamp.format>
@@ -158,8 +158,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <source>15</source>
-                    <target>15</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             

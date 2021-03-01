@@ -162,7 +162,10 @@ Outputs can be saved as a text file for emailing to support on most operating sy
 
 Not knowing the environment the code is entering, Java was chosen as platform-agnostic and easy to distribute, while allowing reasonable <span style="text-decoration: underline dotted gray;" title="Graphical User Interface">GUI</span> development. 
 For a less formal project achieving the data transformation and display with less development time, I'd probably have picked Python running in Jupyter, but Java brings a 
-formalism and long-hand clarity which seems appropriate.  
+formalism and long-hand clarity which seems appropriate. I should note that originally I wrote it for the latest <span style="text-decoration: underline dotted gray;" title="Java Development Kit">JDK</span>, imagining only people with the <span style="text-decoration: underline dotted gray;" title="Java Development Kit">JDK</span> might be interested, 
+but I've now made it back-compatible with the current <span style="text-decoration: underline dotted gray;" title="Java Runtime Environment">JRE</span> so it should "run anywhere"; 
+the more modern code is commented out for later. The code has been checked against fresh <span style="text-decoration: underline dotted gray;" title="Java Runtime Environment">JRE</span> installs for 
+Windows 10 and Debian.
  
 In terms of style, I've valued clarity over efficiency where efficiency is ok; for example, declaring variables to hold intermediate steps in 
 processing, rather than chaining maths together. I have also gone for slightly larger classes than I normally would, to try to keep encapsulation broad and the 

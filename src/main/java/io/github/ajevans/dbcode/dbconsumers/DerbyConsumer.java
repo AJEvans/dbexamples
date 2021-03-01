@@ -398,12 +398,22 @@ public class DerbyConsumer implements IDataConsumer {
         
         fieldTypes.forEach(classType -> {
             String classString = classType.getName();
+            // Adjusted for less fancy JRE still being distributed.
+            /*
             switch(classString) {
                 case "java.lang.String" -> classString = "VARCHAR(255)";
                 case "java.lang.Integer" -> classString = "INTEGER";    
                 case "java.util.GregorianCalendar" -> classString = "DATE";
                 case "java.math.BigDecimal" -> classString = "DECIMAL";
                 default -> classString = "VARCHAR(255)";
+            }
+            */
+            switch(classString) {
+                case "java.lang.String":  classString = "VARCHAR(255)"; break;
+                case "java.lang.Integer": classString = "INTEGER"; break;   
+                case "java.util.GregorianCalendar": classString = "DATE"; break;
+                case "java.math.BigDecimal": classString = "DECIMAL"; break;
+                default: classString = "VARCHAR(255)";
             }
             fieldDefs.add(classString);
             
@@ -515,6 +525,9 @@ public class DerbyConsumer implements IDataConsumer {
             String classString = fieldTypes.get(i).getName(); 
         
             try {
+                
+                // Adjusted for less fancy JRE still being distributed.
+                /*
                 sql = switch(classString) {
                     
                     case "java.lang.String" -> sql + "'" + 
@@ -536,7 +549,32 @@ public class DerbyConsumer implements IDataConsumer {
                     default -> sql + "''" + ")";
                     
                 };
-                
+                */
+                switch(classString) {
+                    
+                    case "java.lang.String": sql =  sql + "'" + 
+                                sanitise((String)fieldValues.get(i), SANITISE_WEAK) + 
+                                "'" + ")"; 
+                                break;
+                    
+                    case "java.lang.Integer": sql = sql + 
+                                fieldValues.get(i).toString() + 
+                                ")"; 
+                                break;
+                    
+                    case "java.util.GregorianCalendar": sql = sql + "'" + sdf.format(
+                                ((GregorianCalendar)fieldValues.get(i)).getTime()
+                                ) + "')"; 
+                                break;
+                    
+                    case "java.math.BigDecimal": sql = sql + 
+                                fieldValues.get(i).toString() + 
+                                ")"; 
+                                break;
+                    
+                    default: sql = sql + "''" + ")"; 
+                    
+                };
                 sql = sql.replace("''", "'" + txtMissingMetadata + "'");
           
             } catch (RuntimeException rte) {
@@ -842,7 +880,8 @@ public class DerbyConsumer implements IDataConsumer {
                 String classString = fieldTypes.get(k).getName();
 
                 try {
-
+                    // Adjusted for less fancy JRE still being distributed.
+                    /*
                     sql = switch(classString) {
                         
                         case "java.lang.String" -> sql + "'" + 
@@ -864,8 +903,32 @@ public class DerbyConsumer implements IDataConsumer {
                         default -> sql + "'" + values.get(k) + "'" + ", ";
                         
                     };
-                    
-                    
+                    */
+                    switch(classString) {
+                        
+                        case "java.lang.String": sql = sql + "'" + 
+                                    sanitise((String)values.get(k), SANITISE_WEAK) + 
+                                    "'" + ", ";
+                                    break;
+                        
+                        case "java.lang.Integer": sql = sql + 
+                                    values.get(k).toString() + 
+                                    ", ";
+                                    break;
+                        
+                        case "java.util.GregorianCalendar": sql = sql + "'" + sdf.format(
+                                    ((GregorianCalendar)values.get(k)).getTime()
+                                    ) + "', ";
+                                    break;
+                        
+                        case "java.math.BigDecimal": sql = sql + 
+                                    values.get(k).toString() + 
+                                    ", ";
+                                    break;
+                        
+                        default: sql = sql + "'" + values.get(k) + "'" + ", ";
+                        
+                    };
                     
                 } catch (RuntimeException rte) {
                     if (debug) rte.printStackTrace();
@@ -1238,7 +1301,8 @@ public class DerbyConsumer implements IDataConsumer {
         // To adjust, see list at:
         // https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
         
-        
+        // Adjusted for less fancy JRE still being distributed.
+        /*
         switch(level) {
             // Remove anything not an alphabet char, comma, space, number or tab.
             case SANITISE_VIGOROUS -> string = 
@@ -1262,7 +1326,29 @@ public class DerbyConsumer implements IDataConsumer {
             
             default -> string = ""; // Fail safe(ish).
         };
-        
+        */
+        switch(level) {
+            // Remove anything not an alphabet char, comma, space, number or tab.
+            case SANITISE_VIGOROUS:string = 
+                                   string.replaceAll("[^a-zA-Z,\\s\\d\\t]"," ");
+                                   break;
+            // Place "A" in front of "ii", and not an alphabetic char. 
+            // Capitalise. Remove anything not alphanumeric or #,@,$. 
+            case SANITISE_NAME: 
+                string = string.replaceAll("^ii","Aii");
+                string = string.toUpperCase();
+                string = string.replaceAll("(^[^A-Z])","A");
+                string = string.replaceAll("[^A-Z\\d#@$$]","");
+                while (string.getBytes().length > 256) {
+                    string = string.substring(0,string.length()-1);
+                }
+                break;
+            
+            // Remove some problematic punctuation: \"';()=
+            case SANITISE_WEAK: string = string.replaceAll("[\"\';()=]"," ");
+                                break;
+            default: string = ""; // Fail safe(ish).
+        };
         return string;
     }
         
@@ -1612,13 +1698,23 @@ public class DerbyConsumer implements IDataConsumer {
                     for (int i = 1; i < rsmd.getColumnCount() + 1; i++) {
                      
                         String type = rsmd.getColumnTypeName(i);
-                         
+                        // Adjusted for less fancy JRE still being distributed.
+                        /* 
                         String value = switch(type) {
                             case "VARCHAR(255)" -> rs.getString(i);
                             case "INTEGER" -> (new Integer(rs.getInt(i))).toString();    
                             case "DATE" -> sdf.format(rs.getDate​​(i));
                             case "DECIMAL" -> rs.getBigDecimal​(i).toString(); 
                             default -> rs.getString(i);
+                        };
+                        */
+                        String value = "";
+                        switch(type) {
+                            case "VARCHAR(255)": value = rs.getString(i); break;
+                            case "INTEGER": value = (new Integer(rs.getInt(i))).toString();  break;   
+                            case "DATE": value = sdf.format(rs.getDate​​(i)); break;
+                            case "DECIMAL": value = rs.getBigDecimal​(i).toString();  break;
+                            default: value = rs.getString(i);
                         };
                         line = line + " | " + value;
                  

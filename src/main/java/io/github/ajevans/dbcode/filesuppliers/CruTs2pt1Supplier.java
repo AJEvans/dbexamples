@@ -761,11 +761,13 @@ public class CruTs2pt1Supplier implements IDataSupplier {
             "NB: The data should be multiplied by the multiplier to gain true values" + 
             System.lineSeparator();
             
-            notes = notes + 
-            """
-            Information on this data can be found at:
-            https://crudata.uea.ac.uk/~timm/grid/CRU_TS_2_1.html
-            """;
+            notes = notes + "Information on this data can be found at: \n" +
+                            "https://crudata.uea.ac.uk/~timm/grid/CRU_TS_2_1.html";
+            // For later JREs
+            //"""
+            //Information on this data can be found at:
+            //https://crudata.uea.ac.uk/~timm/grid/CRU_TS_2_1.html
+            //""";
             
             tableMetadata.setNotes(notes);
             

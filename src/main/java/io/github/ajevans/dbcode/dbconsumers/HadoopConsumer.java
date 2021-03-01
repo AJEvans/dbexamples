@@ -498,6 +498,8 @@ public class HadoopConsumer implements IDataConsumer {
             String classString = fieldTypes.get(i).getName(); 
             
             try {
+                // Adjusted for less fancy JRE still being distributed.
+                /*
                 fieldValue = switch(classString) {
                     
                     case "java.lang.String" -> (String)fieldValues.get(i); 
@@ -511,6 +513,25 @@ public class HadoopConsumer implements IDataConsumer {
                     case "java.math.BigDecimal" -> fieldValues.get(i).toString();
                     
                     default -> fieldValues.get(i).toString();
+                    
+                };
+                */
+                switch(classString) {
+                    
+                    case "java.lang.String": fieldValue = (String)fieldValues.get(i); 
+                                            break;
+                    
+                    case "java.lang.Integer": fieldValue = fieldValues.get(i).toString();
+                                            break;
+                    
+                    case "java.util.GregorianCalendar": fieldValue = sdf.format(
+                                ((GregorianCalendar)fieldValues.get(i)).getTime()
+                                );
+                                            break;
+                    case "java.math.BigDecimal": fieldValue = fieldValues.get(i).toString();
+                                            break;
+                    
+                    default: fieldValue = fieldValues.get(i).toString();
                     
                 };
             } catch (Exception e) {
@@ -784,7 +805,8 @@ public class HadoopConsumer implements IDataConsumer {
                 try {
                     
                     String classString = fieldTypes.get(k).getName();
-
+                    // Adjusted for less fancy JRE still being distributed.
+                    /*
                     stringToWrite = switch(classString) {
                         case "java.lang.String" -> stringToWrite + 
                                                    sanitise((String)values.get(k), 
@@ -806,8 +828,31 @@ public class HadoopConsumer implements IDataConsumer {
                                                     
                         default -> stringToWrite + values.get(k) + ",";
                     };
-                    
-                    
+                    */
+                    switch(classString) {
+                        case "java.lang.String": stringToWrite = stringToWrite + 
+                                                   sanitise((String)values.get(k), 
+                                                   SANITISE_DATA) + 
+                                                   ",";
+                                                    break;
+                        case "java.lang.Integer": stringToWrite = stringToWrite + 
+                                                    values.get(k).toString() + 
+                                                    ",";
+                                                    break;
+                                                    
+                        case "java.util.GregorianCalendar": stringToWrite = stringToWrite + 
+                                                    sdf.format(
+                                                    ((GregorianCalendar)values.get(k)).getTime()
+                                                    ) + ",";
+                                                    break;
+                                                    
+                        case "java.math.BigDecimal": stringToWrite = stringToWrite + 
+                                                    values.get(k).toString() + 
+                                                    ",";
+                                                    break;
+                                                    
+                        default: stringToWrite = stringToWrite + values.get(k) + ",";
+                    };
                 } catch (RuntimeException re) {
                     if (debug) re.printStackTrace();
                      throw new DBCreationException(
@@ -1116,7 +1161,8 @@ public class HadoopConsumer implements IDataConsumer {
 
         String illegalFilenamesWin = "CON PRN AUX NUL COM1 COM2 COM3 COM4 COM5" +
             "COM6 COM7 COM8 COM9 LPT1 LPT2 LPT3 LPT4 LPT5 LPT6 LPT7 LPT8 LPT9";
-                
+        // Adjusted for less fancy JRE still being distributed.
+        /*        
         switch(level) {
             case SANITISE_DIRPATH -> string = string.replaceAll("[<>\"|?*]","-");
 
@@ -1134,7 +1180,25 @@ public class HadoopConsumer implements IDataConsumer {
             case SANITISE_DATA -> string = string.replaceAll("[,]",";");
             default -> string = "";
         };
-
+        */
+        switch(level) {
+            case SANITISE_DIRPATH: string = string.replaceAll("[<>\"|?*]","-");
+                                            break;
+            case SANITISE_FILENAME:
+                string = string.replaceAll("[<>:\"/\\|?*]","-");
+                if (string.lastIndexOf(".") == string.length() - 1) {
+                    string = string.substring(0,string.length() - 1);
+                }
+                if (string.lastIndexOf(" ") == string.length() - 1) {
+                    string = string.substring(0,string.length() - 1);
+                }
+                if (illegalFilenamesWin.contains(string)) string = "Data-" + string; 
+                break;
+            
+            case SANITISE_DATA: string = string.replaceAll("[,]",";");
+                                break;
+            default: string = "";
+        };
         return string;
     }
     
