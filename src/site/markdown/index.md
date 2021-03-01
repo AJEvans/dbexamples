@@ -1,9 +1,11 @@
 ## Introduction
 
 Project builds a jar-based app that reads in Climate Research Unit Time Series 2.1 files gridded files, parses and transforms them, and writes them to a 
-variety of outputs (flat-file; <span style="text-decoration: underline dotted gray;" title="Structured Query Language">SQL</span> database; distributed filesystem). A test file is [available online](https://jbasoftware.com/files/jba-software-code-challenge-data-transformation.zip). 
-A set of [notes](notes.html) is available for 
-the software internals, data outputs, and design reasoning. The application is 
+variety of outputs (flat-file; <span style="text-decoration: underline dotted gray;" title="Structured Query Language">SQL</span> database; distributed filesystem). A large test file is [available online](https://jbasoftware.com/files/jba-software-code-challenge-data-transformation.zip), but you can also download smaller samples here: [sample1.pre](sample1.pre); [sample2.pre](sample2.pre). Details of 
+the licensing of the data can be found on [the data homepage](https://crudata.uea.ac.uk/~timm/grid/CRU_TS_2_1.html).
+
+[Project notes](notes.html) are available describing 
+the software internals, data outputs, and design reasoning (see menu, left). The application is 
 written in the Java language for portability. 
 
 &nbsp;
