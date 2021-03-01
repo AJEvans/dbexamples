@@ -243,7 +243,7 @@ public class DerbyConsumerPushTest {
             ioe.printStackTrace();
         }
 
-            
+
         String strUrl = "jdbc:derby:" + store;
         
         try {

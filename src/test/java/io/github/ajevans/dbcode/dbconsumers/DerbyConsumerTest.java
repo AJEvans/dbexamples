@@ -248,8 +248,7 @@ public class DerbyConsumerTest {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
-            
+ 
         String strUrl = "jdbc:derby:" + store;
         
         try {
